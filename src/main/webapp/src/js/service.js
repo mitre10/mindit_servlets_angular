@@ -27,6 +27,13 @@
                 return $http.delete('todos', requestConfig);
             },
 
+            put: function (todo) {
+                return $http.put('todos', todo, {});
+            },
+
+            post: function (todo) {
+                return $http.post('todos', todo, {});
+            },
 
         };
     }

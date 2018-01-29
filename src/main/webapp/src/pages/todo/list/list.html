@@ -12,7 +12,15 @@
             <tr ng-repeat="todo in todos">
                 <td><a href="#/todoDetail/{{todo.id}}">{{todo.name}}</a></td>
                 <td>
-
+                    <button ng-if="showEditButton" ng-click="clickEdit($index)">Edit</button>
+                    <div ng-if="displayEditView">
+                        <div ng-if ="$index === idToEdit">
+                            <p>Todo name: <input type ='text' id="name"  ng-model ="todo.name" value="{{todo.name}}" /> </p>
+                            <p>Todo owner: <input type ="text" id="owner" ng-model ="todo.owner" value="{{todo.owner}}" /> </p>
+                            <p>Todo priority: <input type ="text" id ="priority" ng-model ="todo.priority" value="{{todo.priority}}" /></p>
+                            <button ng-click="edit()">Save</button>
+                        </div>
+                    </div>
                 </td>
                 <td>
                     <button ng-click="delete($index)">Delete</button>
