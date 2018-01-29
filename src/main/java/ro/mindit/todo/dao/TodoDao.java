@@ -80,6 +80,7 @@ public class TodoDao {
 
         resultSet.close();
         statement.close();
+        disconnect();
 
         return todo;
     }
@@ -109,6 +110,42 @@ public class TodoDao {
         disconnect();
 
         return todoList;
+    }
+
+    public void addTodo(Todo todo) throws SQLException {
+        String sql = "INSERT INTO todo VALUES(?, ?, ?, ?)";
+        connect();
+        PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+        statement.setInt(1, todo.getId());
+        statement.setString(2, todo.getName());
+        statement.setString(3, todo.getOwner());
+        statement.setString(4, todo.getPriority());
+        statement.executeUpdate();
+        statement.close();
+        disconnect();
+    }
+
+    public void deleteTodo(int id) throws SQLException {
+        String sql = "DELETE FROM todo WHERE id = ?";
+        connect();
+        PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+        statement.setInt(1, id);
+        statement.executeUpdate();
+        statement.close();
+        disconnect();
+    }
+
+    public void updateTodo(String name, String owner, String priority, int id) throws SQLException {
+        String sql = "UPDATE todo SET name = ?, owner = ?, priority = ? WHERE id = ?";
+        connect();
+        PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+        statement.setString(1, name);
+        statement.setString(2, owner);
+        statement.setString(3, priority);
+        statement.setInt(4, id);
+        statement.executeUpdate();
+        statement.close();
+        disconnect();
     }
 
 }
