@@ -97,13 +97,13 @@ public class TodoResource extends HttpServlet {
         String json = "";
         ObjectMapper objectMapper = new ObjectMapper();
 
-        String id = request.getQueryString();
+        String id = request.getParameter("id");
         try {
             // Connect to the database
             todoDao.connect();
 
             if (id != null) {
-                Todo todo = todoDao.findOne(1);
+                Todo todo = todoDao.findOne(Integer.parseInt(id));
                 json = objectMapper.writeValueAsString(todo);
             } else {
                 List<Todo> todos = todoDao.findAll();

@@ -63,6 +63,25 @@
                     });
             });
         };
+
+        $scope.create = function(){
+            $scope.displayEditView = true;
+            $scope.showEditButton=false;
+        };
+
+        $scope.saveCreate = function(){
+            $scope.showEditButton=true;
+            TodoService.post($scope.todo)
+                .then(function(res){
+                    TodoService.list()
+                        .then(function (res) {
+                            $scope.todos = res.data;
+                        }, function () {
+                            $scope.todos = [];
+                        });
+                    $scope.displayEditView = false;
+                });
+        };
     }
 
 })();

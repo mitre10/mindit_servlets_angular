@@ -2,6 +2,18 @@
     <div class="panel-heading">
         <h3 class="panel-title">Todo List</h3>
     </div>
+    <p></p>
+    <button ng-if="showEditButton" ng-click="create($index)">Create new</button>
+    <div ng-if="displayEditView">
+        <div ng-if ="$index === idToEdit">
+            <p>Todo id: <input type ='text' id="c0"  ng-model ="todo.id"  /> </p>
+            <p>Todo name: <input type ="text" ng-model ="todo.name"  /> </p>
+            <p>Todo owner: <input type ="text" ng-model ="todo.owner"  /> </p>
+            <p>Todo priority: <input type ="text" ng-model ="todo.priority"  /></p>
+            <button ng-click="saveCreate()">Add</button>
+        </div>
+    </div>
+    <p></p>
     <div>
         <table class="table">
             <tr>
