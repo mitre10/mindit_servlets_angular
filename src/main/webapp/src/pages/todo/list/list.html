@@ -6,10 +6,17 @@
         <table class="table">
             <tr>
                 <td>Name</td>
-                <td>Operation</td>
+                <td></td>
+                <td></td>
             </tr>
             <tr ng-repeat="todo in todos">
                 <td><a href="#/todoDetail/{{todo.id}}">{{todo.name}}</a></td>
+                <td>
+
+                </td>
+                <td>
+                    <button ng-click="delete($index)">Delete</button>
+                </td>
             </tr>
         </table>
     </div>

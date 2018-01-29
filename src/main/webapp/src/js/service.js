@@ -18,7 +18,15 @@
                     params: {id: id}
                 };
                 return $http.get('todos', requestConfig);
-            }
+            },
+
+            delete: function (id) {
+                var requestConfig = {
+                    params: {id: id}
+                };
+                return $http.delete('todos', requestConfig);
+            },
+
 
         };
     }
